@@ -1,0 +1,329 @@
+@import '@xyflow/react/dist/style.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --noc-bg: #04070d;
+  --noc-panel: #080d16;
+  --noc-border: #17243a;
+  --noc-cyan: #22d3ee;
+  --noc-green: #34d399;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #22324d transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--noc-bg);
+  color: #cbd5e1;
+  font-family: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.28);
+  color: #ecfeff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e2d45;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2b4269;
+  background-clip: content-box;
+}
+
+@layer components {
+  .panel-surface {
+    @apply border border-noc-700/70 bg-noc-900/85 shadow-panel backdrop-blur-xl;
+  }
+
+  .eyebrow {
+    @apply text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-[11px] font-medium text-slate-400;
+  }
+
+  .field-input {
+    @apply w-full rounded-lg border border-noc-700 bg-noc-950/80 px-2.5 py-1.5 font-mono text-[12px] text-slate-200 outline-none transition placeholder:text-slate-600 focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/10;
+  }
+
+  .field-input-error {
+    @apply border-rose-500/60 focus:border-rose-400 focus:ring-rose-400/10;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg border px-3 py-1.5 text-[12px] font-medium transition duration-150 disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-ghost {
+    @apply border-noc-700 bg-noc-800/60 text-slate-300 hover:border-noc-600 hover:bg-noc-750 hover:text-white;
+  }
+
+  .btn-primary {
+    @apply border-cyan-400/40 bg-cyan-400/15 text-cyan-200 hover:border-cyan-300/70 hover:bg-cyan-400/25 hover:text-white;
+  }
+
+  .btn-danger {
+    @apply border-rose-500/30 bg-rose-500/10 text-rose-300 hover:border-rose-400/60 hover:bg-rose-500/20 hover:text-rose-100;
+  }
+
+  .icon-btn {
+    @apply inline-flex h-8 w-8 items-center justify-center rounded-lg border border-transparent text-slate-400 transition hover:border-noc-600 hover:bg-noc-750 hover:text-white;
+  }
+}
+
+/* ---------- React Flow theme ---------- */
+
+.react-flow {
+  --xy-background-color: transparent;
+  --xy-edge-stroke-default: #36506f;
+  --xy-edge-stroke-width-default: 1.5;
+  --xy-connectionline-stroke-default: #22d3ee;
+  --xy-handle-background-color-default: #22d3ee;
+  font-family: inherit;
+}
+
+.react-flow__node {
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: auto;
+  border-radius: 14px;
+}
+
+.react-flow__node.selectable:focus,
+.react-flow__node.selectable:focus-visible {
+  outline: none;
+}
+
+.react-flow__handle.netsim-port {
+  width: 16px;
+  height: 16px;
+  min-width: 0;
+  min-height: 0;
+  border: 0;
+  background: transparent;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.react-flow__node:hover .react-flow__handle.netsim-port {
+  opacity: 0.5;
+  background: rgba(34, 211, 238, 0.16);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.22);
+}
+
+.react-flow__handle.netsim-port:hover {
+  opacity: 1;
+  background: rgba(34, 211, 238, 0.4);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 12px -2px rgba(34, 211, 238, 0.5);
+}
+
+.react-flow__edge-path {
+  transition: stroke 180ms ease, stroke-width 180ms ease, opacity 180ms ease;
+}
+
+.react-flow__edge-interaction {
+  stroke-width: 18px;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  filter: drop-shadow(0 0 4px rgba(34, 211, 238, 0.55));
+}
+
+.react-flow__controls {
+  box-shadow: 0 12px 30px -16px rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #17243a;
+}
+
+.react-flow__controls-button {
+  background: rgba(10, 17, 29, 0.95);
+  border-bottom: 1px solid #17243a;
+  color: #94a3b8;
+  width: 30px;
+  height: 30px;
+}
+
+.react-flow__controls-button:hover {
+  background: #121d30;
+  color: #e2e8f0;
+}
+
+.react-flow__controls-button svg {
+  fill: currentColor;
+  max-width: 12px;
+  max-height: 12px;
+}
+
+.react-flow__minimap {
+  background: rgba(8, 13, 22, 0.92) !important;
+  border: 1px solid #17243a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.9);
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(4, 7, 13, 0.72);
+}
+
+.react-flow__attribution {
+  background: transparent !important;
+  color: #334155 !important;
+  font-size: 9px;
+}
+
+.react-flow__attribution a {
+  color: #475569 !important;
+}
+
+.react-flow__selection {
+  background: rgba(34, 211, 238, 0.06);
+  border: 1px dashed rgba(34, 211, 238, 0.4);
+}
+
+.react-flow__connection-path {
+  stroke: #22d3ee;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes nodeGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.35), 0 18px 40px -24px rgba(0, 0, 0, 0.9);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(34, 211, 238, 0.08), 0 18px 40px -24px rgba(0, 0, 0, 0.9);
+  }
+}
+
+.node-transmitting {
+  animation: nodeGlow 1.4s ease-in-out infinite;
+}
+
+@keyframes conflictPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(248, 113, 113, 0.05);
+  }
+}
+
+.node-conflict {
+  animation: conflictPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+.network-edge-flow {
+  animation: dashFlow 0.7s linear infinite;
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.45);
+  }
+  50% {
+    opacity: 0.65;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0);
+  }
+}
+
+.live-dot {
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes packetGlow {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.packet-core {
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.packet-halo {
+  filter: drop-shadow(0 0 8px currentColor);
+  animation: packetGlow 0.7s ease-in-out infinite;
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spinSlow 1.4s linear infinite;
+}
+
+.canvas-vignette {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(34, 211, 238, 0.055), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(4, 7, 13, 0.4), transparent 60%);
+}
+
+input[type='range'] {
+  accent-color: #22d3ee;
+}
+
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
